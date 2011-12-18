@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+ <name>lilhelpers</name>
+ <uri>elkuku.github.com/pear</uri>
+ <summary>KuKu&apos;s lil Helpers</summary>
+ <description>Some little helpers for the dayli and the nightly.</description>
+ <lead>
+  <name>Nikolai Plath</name>
+  <user>elkuku</user>
+  <email>el.kuku@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2011-12-18</date>
+ <time>05:54:27</time>
+ <version>
+  <release>0.0.1</release>
+  <api>0.0.1</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+ <notes>
+Initial preprerelease
+ </notes>
+ <contents>
+  <dir baseinstalldir="elkuku/lilhelpers" name="/">
+   <file baseinstalldir="elkuku/lilhelpers" md5sum="1a58a259550a731652923a0b630f13e5" name="dump.php" role="php" />
+   <file baseinstalldir="elkuku/lilhelpers" md5sum="b378aaf451c9bf8c6c463de26af8ea0c" name="readme.md" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.3</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.0.1</release>
+    <api>0.0.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2011-12-18</date>
+   <license uri="http://www.gnu.org/licenses/lgpl.html">LGPL</license>
+   <notes>
+Initial preprerelease
+   </notes>
+  </release>
+ </changelog>
+</package>
