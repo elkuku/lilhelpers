@@ -49,6 +49,20 @@ class KukuApplicationCli extends JApplicationCli
         $this->verbose = ($this->input->get('q', $this->input->get('quiet'))) ? false : true;
     }
 
+    public function outputTitle($title)
+    {
+        $len = strlen($title) + 6;
+
+        $this
+            ->output()
+            ->output('     '.str_repeat('=', $len), true, '', '', 'bold')
+            ->output('     == '.$title.' ==', true, '', '', 'bold')
+            ->output('     '.str_repeat('=', $len), true, '', '', 'bold')
+            ->output();
+
+        return $this;
+    }
+
     /**
      * Write a string to standard output.
      *
@@ -65,27 +79,33 @@ class KukuApplicationCli extends JApplicationCli
         if(false == $this->verbose)
             return $this;
 
-        static $color = null;
-
-        if(is_null($color))
-            $color = new Console_Color2;
-
-        if($fg && COLORS) $this->out($color->fgcolor($fg), false);
-        if($bg && COLORS) $this->out($color->bgcolor($bg), false);
-
-        if($style && COLORS)
+        if(COLORS)
         {
-            $cs = $color->getColorCodes();
-            //	var_dump($cs);
-            $this->out("\033[".$cs['style'][$style].'m', false);
+            static $color = null;
+
+            if(is_null($color))
+                $color = new Console_Color2;
+
+            if($fg) $this->out($color->fgcolor($fg), false);
+            if($bg) $this->out($color->bgcolor($bg), false);
+
+            if($style)
+            {
+                $cs = $color->getColorCodes();
+                //	var_dump($cs);
+                $this->out("\033[".$cs['style'][$style].'m', false);
+            }
+
+            $this->out($text, $nl);
+
+            if($fg || $bg || $style) $this->out($color->convert('%n'), false);
         }
+        else
+        {
+            $this->out($text, $nl);
 
-        $this->out($text, $nl);
-
-        if(($fg || $bg || $style) && COLORS) $this->out($color->convert('%n'), false);
+        }
 
         return $this;
     }
-
-
 }
