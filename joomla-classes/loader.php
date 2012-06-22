@@ -25,4 +25,13 @@ function kukuLibLoader($name)
         return;
     }
 
+    $path = __DIR__.'/'.strtolower(implode('/', $parts));
+    $path .= $parts[count($parts) - 1].'.php';
+
+    if(file_exists($path))
+    {
+        include $path;
+
+        return;
+    }
 }

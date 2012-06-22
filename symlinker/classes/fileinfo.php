@@ -51,7 +51,7 @@ class SlkFileinfo
         return $obj;
     }//function
 
-    private function getInstance()
+    private static function getInstance()
     {
         return new SlkFileinfo;
     }//function
