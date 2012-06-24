@@ -1,12 +1,13 @@
 <?php
 /**
- * User: elkuku
- * Date: 24.06.12
- * Time: 10:08
+ * @package    SymLinker
+ * @subpackage Template
+ * @author     Nikolai Plath {@link https://github.com/elkuku}
+ * @author     Created on 24-Jun-2012
+ * @license    GNU/GPL
  */
 
-$symlinkList = SlkLinker::getLinks();
-$symlinkList2 = SlkLinker::getList();
+$symlinkList = SlkLinker::getList();
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ $symlinkList2 = SlkLinker::getList();
     </tr>
     <?php
 
-    foreach($symlinkList2 as $symBase => $symLinks)
+    foreach($symlinkList as $symBase => $symLinks)
     {
         ?>
         <tr>
@@ -77,7 +78,5 @@ $symlinkList2 = SlkLinker::getList();
     <small>Just in case: This is @licensed GPL and made 2009 by; <a class="kuku" href="https://github.com/elkuku">El
         KuKu</a> <tt>=;)</tt></small>
 </p>
-<?php //var_dump($symlinkList); ?>
-<?php //var_dump($symlinkList2); ?>
 </body>
 </html>

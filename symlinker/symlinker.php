@@ -1,16 +1,13 @@
 <?php
 /**
- * @version    SVN: $Id: symlinker.php 557 2011-10-08 16:04:57Z elkuku $
  * @package    SymLinker
  * @subpackage Base
- * @author     Nikolai Plath {@link http://easy-joomla.org}
+ * @author     Nikolai Plath {@link https://github.com/elkuku}
  * @author     Created on 26-Oct-2010
  * @license    GNU/GPL
  */
 
 define('SLK_EXEC', 1);
-
-define('DS', DIRECTORY_SEPARATOR);
 
 define('BR', '<br />');
 
@@ -21,7 +18,7 @@ include 'classes/loader.php';
 if(isset($_GET['tpl_created']))
 {
     echo '*** Template created - please modify your paths ! ***'.BR;
-    echo ROOT_PATH.DS.'symlinks'.BR;
+    echo SlkPath::join(ROOT_PATH, 'symlinks').BR;
 }
 
 if(false == file_exists('symlinks'))
@@ -96,10 +93,5 @@ switch($task)
         echo ($task) ? 'unknown task ??' : '';
         break;
 }
-//switch
 
-//ob_start();
 include 'template/template.php';
-?>
-
-<?php

@@ -1,10 +1,15 @@
 <?php
 /**
- * User: elkuku
- * Date: 24.06.12
- * Time: 10:43
+ * @package    SymLinker
+ * @subpackage Classes
+ * @author     Nikolai Plath {@link https://github.com/elkuku}
+ * @author     Created on 24-Jun-2012
+ * @license    GNU/GPL
  */
 
+/**
+ * Link base class.
+ */
 class SlkLink
 {
     /**

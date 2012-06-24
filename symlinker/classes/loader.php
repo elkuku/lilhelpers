@@ -1,10 +1,10 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: jtester
- * Date: 6/16/12
- * Time: 8:28 PM
- * To change this template use File | Settings | File Templates.
+ * @package    SymLinker
+ * @subpackage Classes
+ * @author     Nikolai Plath {@link https://github.com/elkuku}
+ * @author     Created on 24-Jun-2012
+ * @license    GNU/GPL
  */
 
 spl_autoload_register('symlinkerLibLoader', true, true);
@@ -19,10 +19,5 @@ function symlinkerLibLoader($name)
     $path = __DIR__.'/'.strtolower(implode('/', $parts)).'.php';
 
     if(file_exists($path))
-    {
         include $path;
-
-        return;
-    }
-
 }

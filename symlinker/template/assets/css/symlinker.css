@@ -1,5 +1,9 @@
 /**
- * Symlinker CSS
+ * @package    SymLinker
+ * @subpackage Media
+ * @author     Nikolai Plath {@link https://github.com/elkuku}
+ * @author     Created on 24-Jun-2012
+ * @license    GNU/GPL
  */
 b.src {
     color: blue;
@@ -51,11 +55,11 @@ table th {
     padding: 1px;
     background-color: #fff;
 }
+
 table tdx {
     border: 1px inset gray;
     padding: 1px;
 }
-
 
 tr.row:hover {
     background-color: #eee;

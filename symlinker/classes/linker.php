@@ -1,10 +1,15 @@
 <?php
 /**
- * User: elkuku
- * Date: 21.06.12
- * Time: 17:49
+ * @package    SymLinker
+ * @subpackage Classes
+ * @author     Nikolai Plath {@link https://github.com/elkuku}
+ * @author     Created on 24-Jun-2012
+ * @license    GNU/GPL
  */
 
+/**
+ * Symlinker class.
+ */
 class SlkLinker
 {
     public static function getList()
@@ -26,38 +31,35 @@ class SlkLinker
 
                 $link->source = SlkFileinfo::getInfo($symBase, $path, $alias);
                 $link->destination = SlkFileinfo::getInfo(ROOT_PATH, $path, $alias);
-//                $src = SlkFileinfo::getInfo($symBase, $path, $alias);
-                //              $dest = SlkFileinfo::getInfo(ROOT_PATH, $path, $alias);
-
                 $link->path = $path;
-                $link->alias =($alias) ?: $path;
-
-                $linkx = '&sym_base='.$symBase
-                    .'&sym_path='.$path
-                    .'&alias='.$alias;
+                $link->alias = ($alias) ? : $path;
 
                 $link->createLink = '&sym_base='.$symBase
                     .'&sym_path='.$path
                     .'&alias='.$link->alias;
 
                 $links[] = $link;
-
             }
 
             $list[$symBase] = $links;
-
         }
 
         return $list;
     }
 
     /**
+     * Get a link list.
+     *
      * @static
+     * @throws DomainException
      * @return array
      */
-    public static function getLinks()
+    private static function getLinks()
     {
-        $lines = file('symlinks');
+        if(false == file_exists(ROOT_PATH.'/symlinks'))
+            throw new DomainException(__METHOD__.' - Symlink file not found in'.ROOT_PATH.'/symlinks');
+
+        $lines = file(ROOT_PATH.'/symlinks');
 
         $syms = array();
         $base = '';
