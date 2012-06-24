@@ -1,0 +1,70 @@
+/**
+ * Symlinker CSS
+ */
+b.src {
+    color: blue;
+}
+
+b.dest {
+    color: maroon;
+}
+
+body {
+    background-image: -moz-radial-gradient(50% 50% 360deg, circle cover, #949494, #c9c9c9, #c7c7c7 75%, #888999 100%);
+}
+
+a:link, a:visited {
+    color: blue;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    padding: 0.3em;
+}
+
+a:hover {
+    background-color: #ffc;
+}
+
+a.create {
+    color: green;
+}
+
+a.remove {
+    color: red;
+}
+
+a.kuku {
+    display: inline;
+    color: black;
+}
+
+table {
+    width: 100%;
+
+    border: 0px dashed gray;
+    border-spacing: 0px;
+    border-collapse: separate;
+}
+
+table th {
+    border: 1px inset gray;
+    padding: 1px;
+    background-color: #fff;
+}
+table tdx {
+    border: 1px inset gray;
+    padding: 1px;
+}
+
+
+tr.row:hover {
+    background-color: #eee;
+}
+
+td.cell {
+    text-align: center;
+}
+
+th.cell {
+    text-align: left;
+}

@@ -7,6 +7,50 @@
 
 class SlkLinker
 {
+    public static function getList()
+    {
+        $symLinks = self::getLinks();
+
+        $list = array();
+
+        foreach($symLinks as $symBase => $linkList)
+        {
+            if('' == $symBase)
+                continue;
+
+            $links = array();
+
+            foreach($linkList as $path => $alias)
+            {
+                $link = new SlkLink;
+
+                $link->source = SlkFileinfo::getInfo($symBase, $path, $alias);
+                $link->destination = SlkFileinfo::getInfo(ROOT_PATH, $path, $alias);
+//                $src = SlkFileinfo::getInfo($symBase, $path, $alias);
+                //              $dest = SlkFileinfo::getInfo(ROOT_PATH, $path, $alias);
+
+                $link->path = $path;
+                $link->alias =($alias) ?: $path;
+
+                $linkx = '&sym_base='.$symBase
+                    .'&sym_path='.$path
+                    .'&alias='.$alias;
+
+                $link->createLink = '&sym_base='.$symBase
+                    .'&sym_path='.$path
+                    .'&alias='.$link->alias;
+
+                $links[] = $link;
+
+            }
+
+            $list[$symBase] = $links;
+
+        }
+
+        return $list;
+    }
+
     /**
      * @static
      * @return array
@@ -24,7 +68,8 @@ class SlkLinker
 
             //-- Strip blanks and comments
             if(false == $line
-                || strpos($line, '#') === 0)
+                || strpos($line, '#') === 0
+            )
                 continue;
 
             if(strpos($line, 'basePath=') === 0)
@@ -45,17 +90,16 @@ class SlkLinker
 
             $parts = explode(' ', $line);
 
-            $s = trim($parts[0]);
-            $alias =(isset($parts[1])) ? trim($parts[1]) : '';
+            $alias = (isset($parts[1])) ? trim($parts[1]) : '';
 
             $syms[$base][$parts[0]] = $alias;
-        }//foreach
+        }
 
         return $syms;
-    }//function
+    }
 
     /**
-     * Creates a template for a new smlink file.
+     * Creates a template for a new symlink file.
      *
      * @throws Exception
      * @return string
@@ -82,7 +126,6 @@ EOL;
             throw new Exception('Can not write the template file');
 
         return true;
-    }//function
-
+    }
 
 }
