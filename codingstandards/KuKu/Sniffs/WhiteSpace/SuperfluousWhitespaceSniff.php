@@ -44,7 +44,7 @@ class KuKu_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff implements PHP_CodeSniff
     public $supportedTokenizers = array(
        'PHP',
        'JS',
-       'CSS',
+       //'CSS',
     );
 
     /**
@@ -77,8 +77,7 @@ class KuKu_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff implements PHP_CodeSniff
 
         if($stackPtr == $phpcsFile->numTokens - 1)
         {
-            //-- We reached the end of the file
-
+            //-- Wereached the end of the file - without a closing tag
             if($tokens[$stackPtr]['code'] == T_WHITESPACE)
             {
                 $lastCode = $tokens[$stackPtr - 1]['code'];
@@ -93,7 +92,47 @@ class KuKu_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff implements PHP_CodeSniff
             else if(strpos($tokens[$stackPtr]['content'], $phpcsFile->eolChar) === false)
             {
                 //-- Files must end with an empty line
-                $phpcsFile->addError('Please end your files with an empty line.', $stackPtr);
+
+                /*
+                 * @TODO - there seems to be a bug in phpcs.. JS and CSS files always are missing the last line :(
+                 */
+
+                if($phpcsFile->tokenizerType === 'JS')
+                {
+                    // The last token is always the close tag inserted when tokenizsed
+                    // and the second last token is always the last piece of content in
+                    // the file. If the second last token is whitespace, there was
+                    // whitespace at the end of the file.
+                    //var_dump($tokens[$stackPtr]['code']);
+                    //var_dump(T_CLOSE_TAG);
+                    if($tokens[$stackPtr]['code'] !== T_CLOSE_TAG)
+                    {
+                        //$phpcsFile->addError('Please end your files with an empty line.', $stackPtr);
+                    }
+                }
+                else if($phpcsFile->tokenizerType === 'CSS')
+                {
+                    if('}' == $tokens[$stackPtr]['content'])
+                    {
+                       // return;
+                    }
+                    // The last two tokens are always the close tag and whitespace
+                    // inserted when tokenizsed and the third last token is always the
+                    // last piece of content in the file. If the third last token is
+                    // whitespace, there was whitespace at the end of the file.
+                    if($tokens[($stackPtr - 3)]['code'] !== T_WHITESPACE)
+                    {
+                     //   return;
+                    }
+
+                    // Adjust the pointer to give the correct line number for the error.
+                 //   $stackPtr -= 2;
+                }
+                else
+                {
+                    //-- Must be PHP...
+                    $phpcsFile->addError('Please end your files with an empty line.', $stackPtr);
+                }
             }
         }
 
@@ -142,6 +181,11 @@ class KuKu_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff implements PHP_CodeSniff
             }//end if
 
             $phpcsFile->addError('Additional whitespace found at start of file', $stackPtr);
+        }
+        else if($phpcsFile->numTokens == ($stackPtr - 1))
+        {
+            //-- We reached the end of the file - without a closing tag
+            die('BB');
         }
         else if($tokens[$stackPtr]['code'] === T_CLOSE_TAG)
         {

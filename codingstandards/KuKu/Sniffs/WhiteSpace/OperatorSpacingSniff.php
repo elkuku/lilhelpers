@@ -228,7 +228,8 @@ class KuKu_Sniffs_WhiteSpace_OperatorSpacingSniff implements PHP_CodeSniffer_Sni
             {
                 // Don't throw an error for assignments, because other standards allow
                 // multiple spaces there to align multiple assignments.
-                if(in_array($tokens[$stackPtr]['code'], PHP_CodeSniffer_Tokens::$assignmentTokens) === false)
+                if(in_array($tokens[$stackPtr]['code'], PHP_CodeSniffer_Tokens::$assignmentTokens) === false
+                && $tokens[$stackPtr]['code'] !== T_PLUS)
                 {
                     $found = strlen($tokens[($stackPtr - 1)]['content']);
                     $error = sprintf('Expected 1 space before "%s"; %s found'
