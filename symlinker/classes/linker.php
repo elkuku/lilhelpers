@@ -38,7 +38,7 @@ class SlkLinker
 
             if($base == '')
             {
-                echo 'base not set ! - '.$lNo;
+                echo sprintf('%s - Base not set in config line: %d<br />', __METHOD__, $lNo);
 
                 continue;
             }
