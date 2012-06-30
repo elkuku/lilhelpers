@@ -49,15 +49,15 @@ class KukuApplicationCli extends JApplicationCli
         $this->verbose = ($this->input->get('q', $this->input->get('quiet'))) ? false : true;
     }
 
-    public function outputTitle($title)
+    public function outputTitle($title, $color = '')
     {
         $len = strlen($title) + 6;
 
         $this
             ->output()
-            ->output('     '.str_repeat('=', $len), true, '', '', 'bold')
-            ->output('     == '.$title.' ==', true, '', '', 'bold')
-            ->output('     '.str_repeat('=', $len), true, '', '', 'bold')
+            ->output('     |'.str_repeat('¯', $len).'|', true, $color, '', 'bold')
+            ->output('     |   '.$title.'   |', true, $color, '', 'bold')
+            ->output('     |'.str_repeat('_', $len).'|', true, $color, '', 'bold')
             ->output();
 
         return $this;
