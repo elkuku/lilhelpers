@@ -38,7 +38,6 @@ class KukuApplicationCli extends JApplicationCli
         }
         else
         {
-
             //-- Search PEAR's ConsoleColor2
             if(false == class_exists('Console_Color2')) @include 'Console/Color2.php';
 
@@ -55,9 +54,10 @@ class KukuApplicationCli extends JApplicationCli
 
         $this
             ->output()
-            ->output('     |'.str_repeat('¯', $len).'|', true, $color, '', 'bold')
+            ->output('     +'.str_repeat('¯', $len).'+', true, $color, '', 'bold')
+ //           ->output('     +'.str_repeat('-', $len).'+', true, $color, '', 'bold')
             ->output('     |   '.$title.'   |', true, $color, '', 'bold')
-            ->output('     |'.str_repeat('_', $len).'|', true, $color, '', 'bold')
+            ->output('     +'.str_repeat('_', $len).'+', true, $color, '', 'bold')
             ->output();
 
         return $this;

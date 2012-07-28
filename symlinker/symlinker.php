@@ -15,28 +15,6 @@ define('ROOT_PATH', dirname($_SERVER['SCRIPT_FILENAME']));
 
 include 'classes/loader.php';
 
-if(isset($_GET['tpl_created']))
-{
-    echo '*** Template created - please modify your paths ! ***'.BR;
-    echo SlkPath::join(ROOT_PATH, 'symlinks').BR;
-}
-
-if(false == file_exists('symlinks'))
-{
-    try
-    {
-        SlkLinker::createSymLinkTemplate();
-
-        header('Location: http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?tpl_created');
-
-        return;
-    }
-    catch(Exception $e)
-    {
-        exit($e->getMessage());
-    }
-}
-
 $task = @ $_GET['task'];
 $sym_base = @ $_GET['sym_base'];
 $sym_path = @ $_GET['sym_path'];
