@@ -59,7 +59,8 @@ class KuKu_Sniffs_Classes_InstantiateNewClassesSniff implements PHP_CodeSniffer_
                 switch ($tokens[$cnt]['code'])
                 {
                     case T_SEMICOLON:
-                        $valid = true;
+	                case T_COMMA :
+	                    $valid = true;
                         $running = false;
                         break;
 
