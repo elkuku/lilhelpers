@@ -68,7 +68,7 @@ class SlkLinker
 
             $ext = substr($fileName, strrpos($fileName, '.') + 1);
 
-            if('slk' != $ext)
+            if('slks' != $ext)
                 continue;
 
             $list = array_merge($list, self::parseFile($fileInfo->getPathname()));
